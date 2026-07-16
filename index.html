@@ -66,11 +66,9 @@
     .hero-inner {
       position: relative;
       z-index: 2;
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 22px;
+      display: block;
+      max-width: 850px;
       padding: 52px;
-      align-items: center;
     }
 
     .eyebrow {
@@ -124,13 +122,6 @@
       border: 1px solid rgba(47, 92, 69, 0.13);
       font-size: 14px;
       font-weight: 700;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
     }
 
     .btn-primary,
@@ -540,62 +531,20 @@
     }
 
     .footer-note p { margin: 6px 0 0; color: rgba(255, 255, 255, 0.76); }
-
-
-    .hero-photo-stack {
-      position: relative;
-      width: min(100%, 480px);
-      height: 400px;
-      margin: 0 auto;
+    .matching-arrow {
+      color: var(--coral);
+      font-size: 21px;
+      font-weight: 900;
     }
 
-    .hero-polaroid {
-      position: absolute;
-      overflow: hidden;
-      border: 8px solid rgba(255, 250, 240, 0.98);
-      border-bottom-width: 34px;
-      border-radius: 10px;
-      background: #fffaf0;
-      box-shadow: 0 20px 45px rgba(31, 67, 50, 0.22);
-    }
 
-    .hero-polaroid img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero-polaroid.main {
-      inset: 38px 45px 28px 36px;
-      z-index: 3;
-      transform: rotate(1.5deg);
-    }
-
-    .hero-polaroid.left {
-      width: 45%;
-      height: 48%;
-      left: 0;
-      top: 0;
-      z-index: 2;
-      transform: rotate(-8deg);
-    }
-
-    .hero-polaroid.right {
-      width: 43%;
-      height: 46%;
-      right: 0;
-      bottom: 0;
-      z-index: 4;
-      transform: rotate(7deg);
-    }
 
     .memory-section {
-      margin: 24px 0 0;
-      padding: 24px;
-      border-radius: 30px;
+      margin: 22px 0 0;
+      padding: 22px;
+      border-radius: 28px;
       border: 1px solid rgba(47, 92, 69, 0.13);
-      background: rgba(255, 250, 240, 0.76);
+      background: rgba(255, 250, 240, 0.8);
       box-shadow: 0 14px 36px rgba(53, 69, 52, 0.08);
     }
 
@@ -604,69 +553,63 @@
       justify-content: space-between;
       gap: 18px;
       align-items: end;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .memory-head h2 {
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(28px, 4vw, 42px);
+      font-size: clamp(27px, 4vw, 40px);
       color: var(--forest-dark);
     }
 
     .memory-head p {
-      margin: 5px 0 0;
+      margin: 6px 0 0;
       color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .memory-hint {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
     }
 
     .memory-reel {
       display: grid;
       grid-auto-flow: column;
-      grid-auto-columns: minmax(220px, 29%);
+      grid-auto-columns: minmax(220px, 28%);
       gap: 14px;
       overflow-x: auto;
       overscroll-behavior-inline: contain;
       scroll-snap-type: inline mandatory;
-      padding: 4px 2px 15px;
+      padding: 3px 2px 13px;
       scrollbar-color: var(--forest) rgba(47, 92, 69, 0.1);
     }
 
     .memory-photo {
       position: relative;
-      height: 285px;
+      height: 280px;
       padding: 0;
       overflow: hidden;
       border: 0;
       border-radius: 20px;
       background: #ddd;
       scroll-snap-align: start;
-      box-shadow: 0 12px 30px rgba(31, 67, 50, 0.15);
+      box-shadow: 0 12px 28px rgba(31, 67, 50, 0.14);
     }
 
     .memory-photo img {
+      display: block;
       width: 100%;
       height: 100%;
-      display: block;
       object-fit: cover;
-      transition: transform 0.3s ease;
+      transition: transform 0.25s ease;
     }
 
     .memory-photo:hover img {
-      transform: scale(1.035);
-    }
-
-    .memory-photo::after {
-      content: attr(data-label);
-      position: absolute;
-      left: 12px;
-      bottom: 12px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      color: white;
-      background: rgba(31, 67, 50, 0.72);
-      backdrop-filter: blur(7px);
-      font-size: 12px;
-      font-weight: 800;
+      transform: scale(1.025);
     }
 
     .photo-lightbox {
@@ -675,7 +618,7 @@
       z-index: 1000;
       display: none;
       place-items: center;
-      padding: 24px;
+      padding: 22px;
       background: rgba(18, 28, 21, 0.9);
     }
 
@@ -696,45 +639,327 @@
       right: 18px;
       width: 46px;
       height: 46px;
-      border: 1px solid rgba(255,255,255,0.3);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 50%;
-      background: rgba(255,255,255,0.12);
+      background: rgba(255, 255, 255, 0.12);
       color: white;
       font-size: 25px;
       font-weight: 800;
     }
 
-    .immutable-notice {
-      margin-top: 14px;
-      padding: 13px 15px;
-      border-radius: 14px;
-      background: rgba(233, 123, 93, 0.1);
-      border: 1px solid rgba(233, 123, 93, 0.23);
-      color: #754134;
-      font-size: 14px;
-      font-weight: 800;
-      line-height: 1.55;
+    @media (max-width: 700px) {
+      .memory-section {
+        margin-top: 12px;
+        padding: 16px 12px;
+        border-radius: 21px;
+      }
+
+      .memory-head {
+        display: block;
+        padding: 0 4px;
+        margin-bottom: 13px;
+      }
+
+      .memory-head h2 {
+        font-size: 28px;
+      }
+
+      .memory-head p {
+        font-size: 13px;
+      }
+
+      .memory-hint {
+        display: block;
+        margin-top: 6px;
+        font-size: 12px;
+      }
+
+      .memory-reel {
+        grid-auto-columns: 82%;
+        gap: 11px;
+      }
+
+      .memory-photo {
+        height: 255px;
+        border-radius: 17px;
+      }
     }
 
-    .form-locked {
-      opacity: 0.62;
-    }
-
-    .result-section-title {
+    .activity-card.wide-card {
       grid-column: 1 / -1;
-      margin: 18px 0 0;
-      padding: 14px 18px;
+    }
+
+    .mini-lock {
+      padding: 20px;
       border-radius: 18px;
-      background: rgba(47, 92, 69, 0.1);
-      color: var(--forest-dark);
-      font-weight: 900;
+      background: rgba(31, 67, 50, 0.96);
+      color: white;
+      text-align: center;
+    }
+
+    .mini-lock h4 {
+      margin: 0 0 7px;
       font-size: 18px;
     }
 
-    .matching-arrow {
+    .mini-lock p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.76);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .reveal-board {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .reveal-person {
+      padding: 14px 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(47, 92, 69, 0.13);
+      background: rgba(255, 255, 255, 0.72);
+      text-align: center;
+    }
+
+    .reveal-person strong {
+      display: block;
+      color: var(--forest-dark);
+      font-size: 17px;
+    }
+
+    .humor-note {
+      margin-top: 8px;
       color: var(--coral);
-      font-size: 21px;
-      font-weight: 900;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding-bottom: 88px;
+      }
+
+      .page-shell {
+        width: 100%;
+        padding: 10px 10px 28px;
+      }
+
+      .hero {
+        min-height: 0;
+        border-radius: 22px;
+      }
+
+      .hero-inner {
+        padding: 27px 20px 25px;
+      }
+
+      .eyebrow {
+        padding: 7px 10px;
+        font-size: 11px;
+      }
+
+      .hero h1 {
+        margin: 16px 0 12px;
+        font-size: 43px;
+        line-height: 1.02;
+      }
+
+      .hero-copy {
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .hero-facts {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .fact-chip {
+        padding: 11px 12px;
+        font-size: 13px;
+      }
+
+      .section-nav {
+        position: fixed;
+        z-index: 100;
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0;
+        padding: 9px 8px calc(9px + env(safe-area-inset-bottom));
+        border: 0;
+        border-top: 1px solid rgba(47, 92, 69, 0.16);
+        border-radius: 20px 20px 0 0;
+        background: rgba(255, 250, 240, 0.97);
+        box-shadow: 0 -9px 28px rgba(31, 67, 50, 0.13);
+        overflow: visible;
+      }
+
+      .tab-button {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 49px;
+        padding: 8px 5px;
+        border-radius: 13px;
+        font-size: 12px;
+        line-height: 1.25;
+        white-space: normal;
+      }
+
+      .section-head {
+        display: block;
+        margin-bottom: 14px;
+      }
+
+      .section-head h2 {
+        font-size: 31px;
+      }
+
+      .section-head p {
+        margin-top: 5px;
+        font-size: 14px;
+      }
+
+      .feature-grid,
+      .mission-grid,
+      .activity-grid,
+      .result-grid,
+      .reveal-board {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card,
+      .card,
+      .activity-card,
+      .result-card {
+        border-radius: 19px;
+      }
+
+      .feature-card {
+        padding: 17px;
+      }
+
+      .guest-banner {
+        grid-template-columns: 66px 1fr;
+        gap: 13px;
+        padding: 16px;
+        text-align: left;
+        border-radius: 20px;
+      }
+
+      .guest-badge {
+        width: 62px;
+        height: 62px;
+        border-width: 4px;
+        font-size: 25px;
+      }
+
+      .guest-banner h3 {
+        margin-bottom: 4px;
+        font-size: 18px;
+      }
+
+      .guest-banner p {
+        font-size: 13px;
+      }
+
+      .timeline {
+        padding-left: 20px;
+      }
+
+      .timeline::before {
+        left: 6px;
+      }
+
+      .timeline-item {
+        display: block;
+        padding-bottom: 12px;
+      }
+
+      .timeline-item::before {
+        left: -19px;
+        top: 6px;
+      }
+
+      .time-label {
+        margin-bottom: 6px;
+        font-size: 17px;
+      }
+
+      .timeline-content {
+        padding: 15px 16px;
+        border-radius: 17px;
+      }
+
+      .timeline-content h3 {
+        font-size: 16px;
+      }
+
+      .timeline-content p {
+        font-size: 13px;
+      }
+
+      .card,
+      .activity-card {
+        min-height: 0;
+        padding: 18px;
+      }
+
+      .activity-number {
+        font-size: 30px;
+      }
+
+      .answer-box {
+        min-height: 112px;
+        padding: 16px;
+        font-size: 16px;
+      }
+
+      .member-buttons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      input,
+      select,
+      textarea {
+        min-height: 48px;
+        padding: 13px;
+        font-size: 16px;
+      }
+
+      textarea {
+        min-height: 105px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .save-bar {
+        padding: 14px;
+      }
+
+      .save-bar .btn-primary {
+        width: 100%;
+        min-height: 50px;
+      }
+
+      .locked-box,
+      .mini-lock {
+        padding: 20px 16px;
+        border-radius: 19px;
+      }
+
+      .footer-note {
+        margin-bottom: 6px;
+        border-radius: 18px;
+      }
     }
 
     @media (max-width: 900px) {
@@ -772,7 +997,7 @@
           <p class="hero-copy">
             4년째 이어지는 영어 모임의 여름 특별 세션.
             북한산 아래 한옥에서 먹고, 이야기하고, 서로의 답을 추리하며
-            밤을 보내는 6인 전용 캠프입니다.
+            함께 밤을 보내는 6인 전용 모임입니다.
           </p>
 
           <div class="hero-facts">
@@ -781,79 +1006,55 @@
             <div class="fact-chip">👥 Jennie · Dana · Juram · John · TH · Skyla</div>
             <div class="fact-chip">🎤 초청강사 TH</div>
           </div>
-
-          <div class="hero-actions">
-            <button class="btn-primary" data-go="schedule">일정 보기</button>
-            <button class="btn-secondary" data-go="mission">사전 Mission 작성</button>
-          </div>
-        </div>
-
-        <div class="hero-art" aria-label="ESG 모임 추억 사진 콜라주">
-          <div class="hero-photo-stack">
-            <figure class="hero-polaroid left">
-              <img src="images/memory-13.webp" alt="눈 내린 야외에서 함께 찍은 단체 사진" />
-            </figure>
-            <figure class="hero-polaroid main">
-              <img src="images/memory-01.webp" alt="여름 계곡에서 함께 찍은 단체 사진" />
-            </figure>
-            <figure class="hero-polaroid right">
-              <img src="images/memory-09.webp" alt="숙소에서 함께 시간을 보내는 모습" />
-            </figure>
-          </div>
-          <div class="floating-note">
-            <strong>4 Years Together</strong><br />
-            영어로 시작해 계절마다 쌓아 온 우리의 기록.
-          </div>
         </div>
       </div>
     </section>
-
     <section class="memory-section" aria-labelledby="memory-title">
       <div class="memory-head">
         <div>
-          <h2 id="memory-title">Our Four Years</h2>
-          <p>함께 먹고, 공부하고, 놀고, 계절을 건너온 ESG의 기록</p>
+          <h2 id="memory-title">ESG Memories</h2>
+          <p>그동안 함께했던 순간들입니다. 사진을 보면 기억이 조금 더 정확해질 수 있습니다.</p>
         </div>
-        <span class="eyebrow">사진을 누르면 크게 볼 수 있어요</span>
+        <span class="memory-hint">좌우로 밀어 보기</span>
       </div>
-      <div class="memory-reel" aria-label="ESG 추억 사진 모음">
-        <button type="button" class="memory-photo" data-full="images/memory-01.webp" data-label="MEMORY 01">
+      <div class="memory-reel" aria-label="ESG 추억 사진 갤러리">
+        <button type="button" class="memory-photo" data-full="images/memory-01.webp">
           <img src="images/memory-01.webp" alt="ESG 모임 추억 사진 1" loading="lazy" />
         </button>
-        <button type="button" class="memory-photo" data-full="images/memory-02.webp" data-label="MEMORY 02">
+        <button type="button" class="memory-photo" data-full="images/memory-02.webp">
           <img src="images/memory-02.webp" alt="ESG 모임 추억 사진 2" loading="lazy" />
         </button>
-        <button type="button" class="memory-photo" data-full="images/memory-03.webp" data-label="MEMORY 03">
+        <button type="button" class="memory-photo" data-full="images/memory-03.webp">
           <img src="images/memory-03.webp" alt="ESG 모임 추억 사진 3" loading="lazy" />
         </button>
-        <button type="button" class="memory-photo" data-full="images/memory-04.webp" data-label="MEMORY 04">
+        <button type="button" class="memory-photo" data-full="images/memory-04.webp">
           <img src="images/memory-04.webp" alt="ESG 모임 추억 사진 4" loading="lazy" />
         </button>
-        <button type="button" class="memory-photo" data-full="images/memory-05.webp" data-label="MEMORY 05">
+        <button type="button" class="memory-photo" data-full="images/memory-05.webp">
           <img src="images/memory-05.webp" alt="ESG 모임 추억 사진 5" loading="lazy" />
         </button>
-        <button type="button" class="memory-photo" data-full="images/memory-06.webp" data-label="MEMORY 06">
+        <button type="button" class="memory-photo" data-full="images/memory-06.webp">
           <img src="images/memory-06.webp" alt="ESG 모임 추억 사진 6" loading="lazy" />
         </button>
-        <button type="button" class="memory-photo" data-full="images/memory-07.webp" data-label="MEMORY 07">
+        <button type="button" class="memory-photo" data-full="images/memory-07.webp">
           <img src="images/memory-07.webp" alt="ESG 모임 추억 사진 7" loading="lazy" />
         </button>
-        <button type="button" class="memory-photo" data-full="images/memory-08.webp" data-label="MEMORY 08">
+        <button type="button" class="memory-photo" data-full="images/memory-08.webp">
           <img src="images/memory-08.webp" alt="ESG 모임 추억 사진 8" loading="lazy" />
         </button>
-        <button type="button" class="memory-photo" data-full="images/memory-09.webp" data-label="MEMORY 09">
+        <button type="button" class="memory-photo" data-full="images/memory-09.webp">
           <img src="images/memory-09.webp" alt="ESG 모임 추억 사진 9" loading="lazy" />
         </button>
-        <button type="button" class="memory-photo" data-full="images/memory-10.webp" data-label="MEMORY 10">
+        <button type="button" class="memory-photo" data-full="images/memory-10.webp">
           <img src="images/memory-10.webp" alt="ESG 모임 추억 사진 10" loading="lazy" />
         </button>
-        <button type="button" class="memory-photo" data-full="images/memory-11.webp" data-label="MEMORY 11">
+        <button type="button" class="memory-photo" data-full="images/memory-11.webp">
           <img src="images/memory-11.webp" alt="ESG 모임 추억 사진 11" loading="lazy" />
         </button>
-        <button type="button" class="memory-photo" data-full="images/memory-12.webp" data-label="MEMORY 12">
+        <button type="button" class="memory-photo" data-full="images/memory-12.webp">
           <img src="images/memory-12.webp" alt="ESG 모임 추억 사진 12" loading="lazy" />
         </button>
-        <button type="button" class="memory-photo" data-full="images/memory-13.webp" data-label="MEMORY 13">
+        <button type="button" class="memory-photo" data-full="images/memory-13.webp">
           <img src="images/memory-13.webp" alt="ESG 모임 추억 사진 13" loading="lazy" />
         </button>
       </div>
@@ -864,28 +1065,27 @@
       <button class="tab-button active" data-tab="schedule">캠프 일정</button>
       <button class="tab-button" data-tab="mission">사전 Mission</button>
       <button class="tab-button" data-tab="activity">Activity Room</button>
-      <button class="tab-button" data-tab="result">예측 결과</button>
     </nav>
 
     <section id="schedule" class="panel active">
       <div class="section-head">
         <div>
           <h2>Camp Schedule</h2>
-          <p>체크인 15:00 기준 일정입니다.</p>
+          <p>체크인 15:00 기준 일정입니다. 실제 진행은 대화와 식사 흐름에 따라 조금 달라질 수 있습니다.</p>
         </div>
       </div>
 
       <div class="feature-grid">
         <article class="feature-card"><div class="icon">🛒</div><h3>입실 전 장보기</h3><p>저녁, 야식, 술, 음료, 다음 날 아침까지 준비합니다.</p></article>
         <article class="feature-card"><div class="icon">🏡</div><h3>다락재 한옥 스테이</h3><p>북한산과 한옥의 고즈넉한 여름밤을 즐깁니다.</p></article>
-        <article class="feature-card"><div class="icon">🔥</div><h3>6인 여름 캠프</h3><p>한 공간에서 먹고 이야기하고 게임하는 밤입니다.</p></article>
+        <article class="feature-card"><div class="icon">🔥</div><h3>6인 여름 모임</h3><p>한 공간에서 먹고 이야기하고 게임하는 밤입니다.</p></article>
       </div>
 
       <div class="guest-banner">
         <div class="guest-badge">TH</div>
         <div>
           <h3>Special Guest Lecturer · TH</h3>
-          <p>22:30 특별 세션 진행. 주제는 현장 공개입니다.</p>
+          <p>22:30 특별 세션 진행. 주제는 현장에서 공개됩니다.</p>
         </div>
       </div>
 
@@ -895,11 +1095,11 @@
         <div class="timeline-item"><div class="time-label">15:00</div><div class="timeline-content"><h3>체크인 & 캠프 오픈</h3><p>짐 정리, 숙소 확인, 음식과 음료 세팅</p></div></div>
         <div class="timeline-item"><div class="time-label">15:10</div><div class="timeline-content"><h3>Activity : 마니또 게임 시작</h3><p>배정된 마니또를 하루 동안 최소 1회 진심으로 칭찬하기</p></div></div>
         <div class="timeline-item"><div class="time-label">18:30</div><div class="timeline-content"><h3>Dinner & Catch-up</h3><p>식사와 근황 공유</p></div></div>
-        <div class="timeline-item"><div class="time-label">20:00</div><div class="timeline-content"><h3>Activity : 영어 공부 현황 고백회</h3><p>실제 공부량, 미룬 계획, 다음 분기 목표 공개</p></div></div>
+        <div class="timeline-item"><div class="time-label">20:00</div><div class="timeline-content"><h3>Activity : 영어 공부 현황 고백회</h3><p>실제 공부량, 미뤄 둔 계획, 다음 분기 목표를 공유합니다. 계획과 실적의 차이도 함께 확인합니다.</p></div></div>
         <div class="timeline-item"><div class="time-label">21:00</div><div class="timeline-content"><h3>Activity : Who Wrote This?</h3><p>익명 답변 작성자 맞히기</p></div></div>
+        <div class="timeline-item"><div class="time-label">21:50</div><div class="timeline-content"><h3>Activity : Anonymous Thoughts</h3><p>익명 고민과 최근 생각 공개</p></div></div>
         <div class="timeline-item"><div class="time-label">22:30</div><div class="timeline-content"><h3>TH 특별 세션</h3><p>초청강사 TH의 현장 프로그램</p></div></div>
-        <div class="timeline-item"><div class="time-label">23:00</div><div class="timeline-content"><h3>Activity : 예측·마니또 결과 오픈</h3><p>가장 먼저 잘 것으로 예측된 사람과 마니또 전체 매칭 공개</p></div></div>
-        <div class="timeline-item"><div class="time-label">23:15</div><div class="timeline-content"><h3>Activity : Anonymous Thoughts</h3><p>익명 고민과 최근 생각 공개</p></div></div>
+        <div class="timeline-item"><div class="time-label">23:00</div><div class="timeline-content"><h3>Activity : 마니또·예측 결과 공개</h3><p>마니또 전체 매칭과 가장 먼저 잘 것으로 예측된 사람을 공개합니다.</p></div></div>
         <div class="timeline-item"><div class="time-label">00:30</div><div class="timeline-content"><h3>야식 & 자유 토크</h3><p>계획에 없던 이야기 시작</p></div></div>
       </div>
     </section>
@@ -919,7 +1119,7 @@
         <article class="card">
           <span class="mission-label">MISSION 01</span>
           <h3>영어 공부 현황 고백</h3>
-          <p>계획보다 실제로 얼마나 했는지 솔직하게 작성합니다.</p>
+          <p>계획보다 실제로 얼마나 공부했는지 솔직하게 작성합니다.</p>
 
           <label style="margin-top:16px;">
             이름
@@ -1019,92 +1219,107 @@
       <div class="section-head">
         <div>
           <h2>Activity Room</h2>
-          <p>Firebase 연결 시 6명의 휴대폰에서 제출 내용과 진행자의 다음·공개 조작이 동시에 반영됩니다.</p>
+          <p>7월 25일 오후 8시부터 공개됩니다. 제출된 내용을 모두 함께 보며 진행합니다.</p>
         </div>
       </div>
 
-      <div id="activityWaiting" class="locked-box">
-        <h3>아직 준비 중입니다.</h3>
-        <p>사전 Mission이 제출되면 이 화면에 게임 콘텐츠가 자동으로 채워집니다.</p>
+      <div id="activityTimeLocked" class="locked-box">
+        <h3>아직 공개 전입니다.</h3>
+        <p id="activityCountdownText">2026년 7월 25일 오후 8시에 공개됩니다.</p>
       </div>
 
-      <div id="activityContent" style="display:none;">
-        <div class="activity-grid">
-          <article class="activity-card">
-            <div>
-              <div class="activity-number">01</div>
-              <h3>English Study Confession</h3>
-              <div id="confessionDisplay" class="answer-box"></div>
-            </div>
-            <div>
-              <button id="revealConfession" class="btn-primary" style="width:100%;">고백한 사람 공개</button>
-              <button id="nextConfession" class="btn-secondary" style="width:100%;margin-top:8px;">다음 고백</button>
-              <div id="confessionOwner" style="margin-top:10px;font-weight:800;"></div>
-            </div>
-          </article>
+      <div id="activityAfterOpen" style="display:none;">
+        <div id="activityWaiting" class="locked-box">
+          <h3>답변을 기다리는 중입니다.</h3>
+          <p>사전 Mission이 하나 이상 제출되면 게임 콘텐츠가 자동으로 채워집니다.</p>
+        </div>
 
-          <article class="activity-card">
-            <div>
-              <div class="activity-number">02</div>
-              <h3>Who Wrote This?</h3>
-              <div id="answerQuestionDisplay" style="color:var(--muted);margin-bottom:10px;"></div>
-              <div id="answerDisplay" class="answer-box"></div>
-            </div>
-            <div>
-              <div id="answerMemberButtons" class="member-buttons"></div>
-              <div style="display:flex;gap:8px;margin-top:12px;">
-                <button id="checkAnswer" class="btn-primary" style="flex:1;">내 답 확인</button>
-                <button id="revealAnswer" class="btn-secondary" style="flex:1;">전체 공개</button>
+        <div id="activityContent" style="display:none;">
+          <div class="activity-grid">
+            <article class="activity-card">
+              <div>
+                <div class="activity-number">01</div>
+                <h3>English Study Confession</h3>
+                <p class="humor-note">계획보다 실제 공부량을 기준으로 봅니다.</p>
+                <div id="confessionDisplay" class="answer-box"></div>
               </div>
-              <button id="nextAnswer" class="btn-secondary" style="width:100%;margin-top:8px;">다음 답변</button>
-              <div id="answerFeedback" style="margin-top:10px;font-weight:800;"></div>
-            </div>
-          </article>
+              <div>
+                <button id="revealConfession" class="btn-primary" style="width:100%;">고백한 사람 공개</button>
+                <button id="nextConfession" class="btn-secondary" style="width:100%;margin-top:8px;">다음 고백</button>
+                <div id="confessionOwner" style="margin-top:10px;font-weight:800;"></div>
+              </div>
+            </article>
 
-          <article class="activity-card">
-            <div>
-              <div class="activity-number">03</div>
-              <h3>Anonymous Thoughts</h3>
-              <div id="thoughtDisplay" class="answer-box"></div>
-            </div>
-            <div>
-              <button id="revealThought" class="btn-primary" style="width:100%;">작성자 공개</button>
-              <button id="nextThought" class="btn-secondary" style="width:100%;margin-top:8px;">다음 고민</button>
-              <div id="thoughtOwner" style="margin-top:10px;font-weight:800;"></div>
-            </div>
-          </article>
+            <article class="activity-card">
+              <div>
+                <div class="activity-number">02</div>
+                <h3>Who Wrote This?</h3>
+                <p class="humor-note">답변의 문체만 보고 작성자를 추리합니다.</p>
+                <div id="answerQuestionDisplay" style="color:var(--muted);margin-bottom:10px;"></div>
+                <div id="answerDisplay" class="answer-box"></div>
+              </div>
+              <div>
+                <div id="answerMemberButtons" class="member-buttons"></div>
+                <div style="display:flex;gap:8px;margin-top:12px;">
+                  <button id="checkAnswer" class="btn-primary" style="flex:1;">내 답 확인</button>
+                  <button id="revealAnswer" class="btn-secondary" style="flex:1;">전체 공개</button>
+                </div>
+                <button id="nextAnswer" class="btn-secondary" style="width:100%;margin-top:8px;">다음 답변</button>
+                <div id="answerFeedback" style="margin-top:10px;font-weight:800;"></div>
+              </div>
+            </article>
 
-          <article class="activity-card">
-            <div>
-              <div class="activity-number">04</div>
-              <h3>Manitto Status</h3>
-              <div id="manittoBoard" class="answer-box"></div>
-            </div>
-            <p>마니또의 정체는 공개하지 않습니다. 각자 하루 동안 최소 한 번 칭찬을 완료하세요.</p>
-          </article>
+            <article class="activity-card">
+              <div>
+                <div class="activity-number">03</div>
+                <h3>Anonymous Thoughts</h3>
+                <p class="humor-note">먼저 공감한 뒤 이야기를 나눕니다.</p>
+                <div id="thoughtDisplay" class="answer-box"></div>
+              </div>
+              <div>
+                <button id="revealThought" class="btn-primary" style="width:100%;">작성자 공개</button>
+                <button id="nextThought" class="btn-secondary" style="width:100%;margin-top:8px;">다음 고민</button>
+                <div id="thoughtOwner" style="margin-top:10px;font-weight:800;"></div>
+              </div>
+            </article>
+
+            <article class="activity-card wide-card">
+              <div>
+                <div class="activity-number">04</div>
+                <h3>Manitto Matching</h3>
+                <p class="humor-note">마니또 전체 매칭은 밤 11시에 공개됩니다.</p>
+
+                <div id="manittoRevealLocked" class="mini-lock">
+                  <h4>밤 11시까지 비공개</h4>
+                  <p id="manittoCountdownText">마니또 미션은 먼저 진행하고, 매칭은 밤 11시에 확인합니다.</p>
+                </div>
+
+                <div id="manittoRevealContent" style="display:none;">
+                  <button id="revealManittoResults" class="btn-primary" style="width:100%;">마니또 전체 매칭 보기</button>
+                  <div id="manittoResultBoard" class="reveal-board"></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="activity-card wide-card">
+              <div>
+                <div class="activity-number">05</div>
+                <h3>Tonight Prediction Result</h3>
+                <p class="humor-note">가장 많은 표를 받은 사람은 벌칙으로 가장 늦게 자야 합니다.</p>
+
+                <div id="predictionRevealLocked" class="mini-lock">
+                  <h4>결과 공개 전</h4>
+                  <p id="predictionCountdownText">7월 25일 밤 11시에 공개됩니다.</p>
+                </div>
+
+                <div id="predictionRevealContent" style="display:none;">
+                  <button id="calculateResults" class="btn-primary" style="width:100%;">예측 결과 보기</button>
+                  <div id="resultBoard" class="result-grid" style="margin-top:14px;"></div>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <section id="result" class="panel">
-      <div class="section-head">
-        <div>
-          <h2>Final Reveal</h2>
-          <p>2026년 7월 25일 밤 11시부터 예측 결과와 마니또 전체 매칭을 확인할 수 있습니다.</p>
-        </div>
-      </div>
-
-      <div id="resultLocked" class="locked-box">
-        <h3>결과는 밤 11시에 공개됩니다.</h3>
-        <p id="countdownText">오픈 시간까지 계산 중입니다.</p>
-      </div>
-
-      <div id="resultContent" style="display:none;">
-        <div class="card">
-          <p style="margin-bottom:16px;">아래 버튼을 누르면 ‘가장 일찍 잘 것 같은 사람’ 투표 결과와 마니또 전체 매칭이 함께 공개됩니다.</p>
-          <button id="calculateResults" class="btn-primary" style="width:100%;">예측·마니또 결과 공개하기</button>
-        </div>
-        <div id="resultBoard" class="result-grid" style="margin-top:18px;"></div>
       </div>
     </section>
 
@@ -1164,10 +1379,10 @@
     });
 
     const members = ["Jennie", "Dana", "Juram", "John", "TH", "Skyla"];
-    const LOCAL_SUBMISSIONS_KEY = "esg_darakjae_submissions_v5";
-    const LOCAL_MANITTO_KEY = "esg_darakjae_manitto_v5";
-    const LOCAL_STATE_KEY = "esg_darakjae_activity_state_v5";
-    const LAST_MEMBER_KEY = "esg_darakjae_last_member_v5";
+    const LOCAL_SUBMISSIONS_KEY = "esg_darakjae_submissions_v7";
+    const LOCAL_MANITTO_KEY = "esg_darakjae_manitto_v7";
+    const LOCAL_STATE_KEY = "esg_darakjae_activity_state_v7";
+    const LAST_MEMBER_KEY = "esg_darakjae_last_member_v7";
 
     let submissions = [];
     let answerDeck = [];
@@ -1189,7 +1404,7 @@
     };
 
     const localChannel = "BroadcastChannel" in window
-      ? new BroadcastChannel("esg-darakjae-live-v5")
+      ? new BroadcastChannel("esg-darakjae-live-v7")
       : null;
 
     const syncStatus = document.getElementById("syncStatus");
@@ -1216,7 +1431,7 @@
         panel.classList.toggle("active", panel.id === tabId);
       });
       window.scrollTo({
-        top: document.querySelector(".section-nav").offsetTop - 10,
+        top: window.innerWidth <= 700 ? 0 : document.querySelector(".section-nav").offsetTop - 10,
         behavior: "smooth"
       });
     }
@@ -1573,6 +1788,12 @@
     }
 
     function renderActivityAvailability() {
+      const activityOpen = Date.now() >= activityUnlockTime;
+      document.getElementById("activityTimeLocked").style.display = activityOpen ? "none" : "block";
+      document.getElementById("activityAfterOpen").style.display = activityOpen ? "block" : "none";
+
+      if (!activityOpen) return;
+
       const hasData = submissions.length > 0;
       document.getElementById("activityWaiting").style.display = hasData ? "none" : "block";
       document.getElementById("activityContent").style.display = hasData ? "block" : "none";
@@ -1586,7 +1807,6 @@
       renderConfession();
       renderAnswer();
       renderThought();
-      renderManittoBoard();
     }
 
     function renderConfession() {
@@ -1625,13 +1845,6 @@
       document.getElementById("thoughtOwner").textContent = activityState.thoughtRevealed
         ? `작성자는 ${item.name}입니다.`
         : "";
-    }
-
-    function renderManittoBoard() {
-      const names = submissions.map(item => item.name);
-      document.getElementById("manittoBoard").innerHTML = names.length
-        ? `<div>${names.map(name => `<div style="margin:6px 0;"><strong>${name}</strong> · 마니또 배정 완료</div>`).join("")}</div>`
-        : "아직 배정된 멤버가 없습니다.";
     }
 
     function escapeHtml(value) {
@@ -1740,25 +1953,67 @@
       refreshAll();
     });
 
-    const unlockTime = new Date("2026-07-25T23:00:00+09:00").getTime();
+    const activityUnlockTime = new Date("2026-07-25T20:00:00+09:00").getTime();
+    const finalRevealTime = new Date("2026-07-25T23:00:00+09:00").getTime();
 
-    function updateUnlockState() {
+    function formatRemaining(targetTime) {
+      const diff = Math.max(0, targetTime - Date.now());
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      return `${days}일 ${hours}시간 ${minutes}분`;
+    }
+
+    function updateTimeLocks() {
       const now = Date.now();
-      const locked = now < unlockTime;
-      document.getElementById("resultLocked").style.display = locked ? "block" : "none";
-      document.getElementById("resultContent").style.display = locked ? "none" : "block";
+      const activityOpen = now >= activityUnlockTime;
+      const finalOpen = now >= finalRevealTime;
 
-      if (locked) {
-        const diff = unlockTime - now;
-        const days = Math.floor(diff / 86400000);
-        const hours = Math.floor((diff % 86400000) / 3600000);
-        const minutes = Math.floor((diff % 3600000) / 60000);
-        document.getElementById("countdownText").textContent =
-          `2026년 7월 25일 밤 11시 오픈 · 남은 시간 ${days}일 ${hours}시간 ${minutes}분`;
+      renderActivityAvailability();
+
+      const activityCountdown = document.getElementById("activityCountdownText");
+      if (activityCountdown && !activityOpen) {
+        activityCountdown.textContent =
+          `2026년 7월 25일 오후 8시 공개 · 남은 시간 ${formatRemaining(activityUnlockTime)}`;
+      }
+
+      document.getElementById("manittoRevealLocked").style.display = finalOpen ? "none" : "block";
+      document.getElementById("manittoRevealContent").style.display = finalOpen ? "block" : "none";
+      document.getElementById("predictionRevealLocked").style.display = finalOpen ? "none" : "block";
+      document.getElementById("predictionRevealContent").style.display = finalOpen ? "block" : "none";
+
+      if (!finalOpen) {
+        const remaining = formatRemaining(finalRevealTime);
+        document.getElementById("manittoCountdownText").textContent =
+          `2026년 7월 25일 밤 11시 공개 · 남은 시간 ${remaining}`;
+        document.getElementById("predictionCountdownText").textContent =
+          `2026년 7월 25일 밤 11시 공개 · 남은 시간 ${remaining}`;
       }
     }
 
-    document.getElementById("calculateResults").addEventListener("click", async () => {
+    document.getElementById("revealManittoResults").addEventListener("click", async () => {
+      const board = document.getElementById("manittoResultBoard");
+      board.innerHTML = "";
+
+      const manittoMap = await getManittoMap();
+      if (!Object.keys(manittoMap).length) {
+        board.innerHTML = '<div class="reveal-person">마니또 배정 정보가 없습니다.</div>';
+        return;
+      }
+
+      members.forEach(giver => {
+        const card = document.createElement("div");
+        card.className = "reveal-person";
+        card.innerHTML = `
+          <strong>${escapeHtml(giver)}</strong>
+          <div class="matching-arrow">↓</div>
+          <span>${escapeHtml(manittoMap[giver] || "미배정")}</span>
+        `;
+        board.appendChild(card);
+      });
+    });
+
+    document.getElementById("calculateResults").addEventListener("click", () => {
       const resultBoard = document.getElementById("resultBoard");
       resultBoard.innerHTML = "";
 
@@ -1781,19 +2036,14 @@
       const maxVotes = ranked[0]?.votes ?? 0;
       const earliestSleepers = ranked.filter(item => item.votes === maxVotes && maxVotes > 0);
 
-      const predictionSummary = document.createElement("div");
-      predictionSummary.className = "locked-box";
-      predictionSummary.style.gridColumn = "1 / -1";
-      predictionSummary.innerHTML = earliestSleepers.length
+      const summary = document.createElement("div");
+      summary.className = "locked-box";
+      summary.style.gridColumn = "1 / -1";
+      summary.innerHTML = earliestSleepers.length
         ? `<h3>가장 먼저 잘 것으로 예측된 사람: ${earliestSleepers.map(item => escapeHtml(item.name)).join(", ")}</h3>
-           <p>최다 득표 ‘노잼인간’이므로 오늘은 벌칙으로 가장 늦게 자야 합니다.</p>`
+           <p>최다 득표자는 사전 안내에 따라 오늘 가장 늦게 자야 합니다.</p>`
         : "<h3>집계할 표가 없습니다.</h3>";
-      resultBoard.appendChild(predictionSummary);
-
-      const voteTitle = document.createElement("div");
-      voteTitle.className = "result-section-title";
-      voteTitle.textContent = "가장 일찍 잘 사람 투표 결과";
-      resultBoard.appendChild(voteTitle);
+      resultBoard.appendChild(summary);
 
       ranked.forEach((item, index) => {
         const card = document.createElement("div");
@@ -1803,35 +2053,6 @@
           <h3>${escapeHtml(item.name)}</h3>
           <p>${item.votes}표</p>
           <strong>${item.votes === maxVotes && maxVotes > 0 ? "최다 득표" : ""}</strong>
-        `;
-        resultBoard.appendChild(card);
-      });
-
-      const manittoTitle = document.createElement("div");
-      manittoTitle.className = "result-section-title";
-      manittoTitle.textContent = "마니또 전체 매칭";
-      resultBoard.appendChild(manittoTitle);
-
-      const manittoMap = await getManittoMap();
-      if (!Object.keys(manittoMap).length) {
-        const empty = document.createElement("div");
-        empty.className = "result-card";
-        empty.style.gridColumn = "1 / -1";
-        empty.textContent = "마니또 배정 정보가 없습니다.";
-        resultBoard.appendChild(empty);
-        return;
-      }
-
-      members.forEach(giver => {
-        const card = document.createElement("div");
-        card.className = "result-card";
-        card.innerHTML = `
-          <h3>${escapeHtml(giver)}</h3>
-          <div class="matching-arrow">↓</div>
-          <p style="font-size:18px;font-weight:900;color:var(--forest-dark);">
-            ${escapeHtml(manittoMap[giver] || "미배정")}
-          </p>
-          <small>최소 1회 칭찬 미션</small>
         `;
         resultBoard.appendChild(card);
       });
@@ -1845,8 +2066,8 @@
 
     renderSubmissionStatus();
     renderActivityAvailability();
-    updateUnlockState();
-    setInterval(updateUnlockState, 30000);
+    updateTimeLocks();
+    setInterval(updateTimeLocks, 30000);
     initializeDataLayer();
   </script>
 </body>
