@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESG Overnight at 다락재</title>
+  <style>
+    :root {
+      --ink: #243126;
+      --muted: #69766a;
+      --paper: #f7f0df;
+      --paper-2: #fffaf0;
+      --forest: #2f5c45;
+      --forest-dark: #1f4332;
+      --leaf: #6c9d62;
+      --sun: #f2b84b;
+      --coral: #e97b5d;
+      --sky: #b9d9d4;
+      --wood: #9d6848;
+      --line: rgba(47, 92, 69, 0.18);
+      --shadow: 0 18px 50px rgba(50, 61, 46, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(242, 184, 75, 0.17), transparent 28%),
+        radial-gradient(circle at 90% 16%, rgba(185, 217, 212, 0.35), transparent 24%),
+        linear-gradient(180deg, #f8f3e8 0%, #f4ead8 100%);
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+
+    .page-shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 70px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 520px;
+      border: 1px solid rgba(47, 92, 69, 0.14);
+      border-radius: 34px;
+      background: linear-gradient(135deg, rgba(255, 250, 240, 0.93), rgba(247, 240, 223, 0.82));
+      box-shadow: var(--shadow);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(47, 92, 69, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(47, 92, 69, 0.035) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 22px;
+      padding: 52px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid rgba(47, 92, 69, 0.16);
+      border-radius: 999px;
+      background: rgba(255, 250, 240, 0.75);
+      color: var(--forest-dark);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero h1 {
+      margin: 20px 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      color: var(--forest-dark);
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--coral);
+      font-style: italic;
+    }
+
+    .hero-copy {
+      max-width: 610px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .hero-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .fact-chip {
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(47, 92, 69, 0.13);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      border-radius: 15px;
+      padding: 13px 18px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn-primary {
+      background: var(--forest);
+      color: white;
+      box-shadow: 0 10px 24px rgba(47, 92, 69, 0.2);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 250, 240, 0.76);
+      color: var(--forest-dark);
+      border-color: rgba(47, 92, 69, 0.16);
+    }
+
+    .btn-primary:hover, .btn-secondary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:disabled, .btn-secondary:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+      transform: none;
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 390px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .art-frame {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(42, 67, 49, 0.2);
+      border: 8px solid rgba(255, 250, 240, 0.9);
+      transform: rotate(1.5deg);
+    }
+
+    .floating-note {
+      position: absolute;
+      right: 6px;
+      bottom: 10px;
+      width: 180px;
+      padding: 16px;
+      border-radius: 18px;
+      background: #fff8d8;
+      border: 1px solid rgba(157, 104, 72, 0.18);
+      box-shadow: 0 14px 28px rgba(90, 69, 45, 0.16);
+      transform: rotate(-4deg);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .section-nav {
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+      margin: 24px 0;
+      padding: 10px;
+      border-radius: 20px;
+      background: rgba(255, 250, 240, 0.86);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(47, 92, 69, 0.14);
+      box-shadow: 0 10px 28px rgba(59, 73, 55, 0.1);
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .tab-button {
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 13px;
+      padding: 11px 16px;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .tab-button.active {
+      background: var(--forest);
+      color: white;
+    }
+
+    .panel { display: none; animation: fade 0.22s ease; }
+    .panel.active { display: block; }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 5vw, 46px);
+      color: var(--forest-dark);
+    }
+
+    .section-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .feature-grid,
+    .mission-grid,
+    .activity-grid,
+    .result-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .feature-grid { grid-template-columns: repeat(3, 1fr); margin-bottom: 22px; }
+    .mission-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .activity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .result-grid { grid-template-columns: repeat(3, 1fr); }
+
+    .feature-card, .card, .activity-card, .result-card {
+      border-radius: 24px;
+      background: rgba(255, 250, 240, 0.87);
+      border: 1px solid rgba(47, 92, 69, 0.13);
+      box-shadow: 0 14px 36px rgba(53, 69, 52, 0.08);
+    }
+
+    .feature-card { padding: 20px; }
+    .feature-card .icon { font-size: 28px; }
+    .feature-card h3 { margin: 14px 0 6px; font-size: 18px; }
+    .feature-card p, .card p { margin: 0; color: var(--muted); line-height: 1.65; font-size: 14px; }
+
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(var(--sun), var(--forest));
+    }
+
+    .timeline-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      padding: 0 0 18px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -24px;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--sun);
+      border: 3px solid var(--paper-2);
+      box-shadow: 0 0 0 2px rgba(47, 92, 69, 0.2);
+    }
+
+    .time-label {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--forest-dark);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .timeline-content {
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: rgba(255, 250, 240, 0.8);
+      border: 1px solid rgba(47, 92, 69, 0.12);
+    }
+
+    .timeline-content h3 { margin: 0 0 6px; }
+    .timeline-content p { margin: 0; color: var(--muted); line-height: 1.6; }
+
+    .guest-banner {
+      margin: 22px 0;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 18px;
+      align-items: center;
+      padding: 22px;
+      border-radius: 24px;
+      color: white;
+      background: linear-gradient(135deg, rgba(31, 67, 50, 0.96), rgba(47, 92, 69, 0.92));
+      box-shadow: 0 18px 40px rgba(31, 67, 50, 0.2);
+    }
+
+    .guest-badge {
+      width: 110px;
+      height: 110px;
+      margin: auto;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      background: var(--sun);
+      color: var(--forest-dark);
+      border: 6px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .card, .activity-card { padding: 24px; }
+    .card h3, .activity-card h3 { margin: 0 0 8px; color: var(--forest-dark); }
+
+    .mission-label {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: var(--forest-dark);
+      background: rgba(242, 184, 75, 0.26);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+    }
+
+    .question-block {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.58);
+      border: 1px dashed rgba(47, 92, 69, 0.18);
+    }
+
+    .question-block strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--forest-dark);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--forest-dark);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      margin-top: 7px;
+      padding: 13px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(47, 92, 69, 0.18);
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--ink);
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--forest);
+      box-shadow: 0 0 0 4px rgba(47, 92, 69, 0.08);
+    }
+
+    textarea { min-height: 96px; resize: vertical; }
+
+    .save-bar {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(108, 157, 98, 0.12);
+      border: 1px dashed rgba(47, 92, 69, 0.28);
+    }
+
+    .submission-status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0 20px;
+    }
+
+    .status-chip {
+      padding: 8px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(47,92,69,0.16);
+      background: rgba(255,255,255,0.6);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--muted);
+    }
+
+    .status-chip.done {
+      background: var(--forest);
+      color: white;
+    }
+
+    .activity-card {
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .activity-number {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 38px;
+      color: var(--coral);
+    }
+
+    .answer-box {
+      min-height: 130px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px dashed rgba(47, 92, 69, 0.22);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .member-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .member-buttons button {
+      border: 1px solid rgba(47, 92, 69, 0.16);
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 12px;
+      padding: 10px 8px;
+      color: var(--forest-dark);
+      font-weight: 800;
+    }
+
+    .member-buttons button:hover,
+    .member-buttons button.selected {
+      background: var(--forest);
+      color: white;
+    }
+
+    .manitto-box {
+      margin-top: 16px;
+      padding: 20px;
+      border-radius: 18px;
+      background: #fff3c7;
+      border: 1px solid rgba(157,104,72,0.18);
+      text-align: center;
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--forest-dark);
+    }
+
+    .locked-box {
+      padding: 26px;
+      border-radius: 24px;
+      background: rgba(31,67,50,0.96);
+      color: white;
+      text-align: center;
+    }
+
+    .locked-box h3 { margin: 0 0 8px; }
+    .locked-box p { margin: 0; color: rgba(255,255,255,0.78); line-height: 1.65; }
+
+    .result-card {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .result-rank {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--coral);
+      font-size: 34px;
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(31, 67, 50, 0.96);
+      color: white;
+      text-align: center;
+    }
+
+    .footer-note p { margin: 6px 0 0; color: rgba(255, 255, 255, 0.76); }
+
+
+    .hero-photo-stack {
+      position: relative;
+      width: min(100%, 480px);
+      height: 400px;
+      margin: 0 auto;
+    }
+
+    .hero-polaroid {
+      position: absolute;
+      overflow: hidden;
+      border: 8px solid rgba(255, 250, 240, 0.98);
+      border-bottom-width: 34px;
+      border-radius: 10px;
+      background: #fffaf0;
+      box-shadow: 0 20px 45px rgba(31, 67, 50, 0.22);
+    }
+
+    .hero-polaroid img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-polaroid.main {
+      inset: 38px 45px 28px 36px;
+      z-index: 3;
+      transform: rotate(1.5deg);
+    }
+
+    .hero-polaroid.left {
+      width: 45%;
+      height: 48%;
+      left: 0;
+      top: 0;
+      z-index: 2;
+      transform: rotate(-8deg);
+    }
+
+    .hero-polaroid.right {
+      width: 43%;
+      height: 46%;
+      right: 0;
+      bottom: 0;
+      z-index: 4;
+      transform: rotate(7deg);
+    }
+
+    .memory-section {
+      margin: 24px 0 0;
+      padding: 24px;
+      border-radius: 30px;
+      border: 1px solid rgba(47, 92, 69, 0.13);
+      background: rgba(255, 250, 240, 0.76);
+      box-shadow: 0 14px 36px rgba(53, 69, 52, 0.08);
+    }
+
+    .memory-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    .memory-head h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(28px, 4vw, 42px);
+      color: var(--forest-dark);
+    }
+
+    .memory-head p {
+      margin: 5px 0 0;
+      color: var(--muted);
+    }
+
+    .memory-reel {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(220px, 29%);
+      gap: 14px;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-snap-type: inline mandatory;
+      padding: 4px 2px 15px;
+      scrollbar-color: var(--forest) rgba(47, 92, 69, 0.1);
+    }
+
+    .memory-photo {
+      position: relative;
+      height: 285px;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      border-radius: 20px;
+      background: #ddd;
+      scroll-snap-align: start;
+      box-shadow: 0 12px 30px rgba(31, 67, 50, 0.15);
+    }
+
+    .memory-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .memory-photo:hover img {
+      transform: scale(1.035);
+    }
+
+    .memory-photo::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: white;
+      background: rgba(31, 67, 50, 0.72);
+      backdrop-filter: blur(7px);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .photo-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      place-items: center;
+      padding: 24px;
+      background: rgba(18, 28, 21, 0.9);
+    }
+
+    .photo-lightbox.open {
+      display: grid;
+    }
+
+    .photo-lightbox img {
+      max-width: min(1100px, 94vw);
+      max-height: 86vh;
+      border-radius: 18px;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.4);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      color: white;
+      font-size: 25px;
+      font-weight: 800;
+    }
+
+    .immutable-notice {
+      margin-top: 14px;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: rgba(233, 123, 93, 0.1);
+      border: 1px solid rgba(233, 123, 93, 0.23);
+      color: #754134;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.55;
+    }
+
+    .form-locked {
+      opacity: 0.62;
+    }
+
+    .result-section-title {
+      grid-column: 1 / -1;
+      margin: 18px 0 0;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: rgba(47, 92, 69, 0.1);
+      color: var(--forest-dark);
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .matching-arrow {
+      color: var(--coral);
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; padding: 34px; }
+      .feature-grid, .activity-grid, .result-grid, .mission-grid { grid-template-columns: 1fr; }
+      .guest-banner { grid-template-columns: 1fr; text-align: center; }
+      .hero-art { min-height: 330px; }
+      .memory-reel { grid-auto-columns: minmax(230px, 55%); }
+    }
+
+    @media (max-width: 620px) {
+      .page-shell { width: min(100% - 18px, 1180px); }
+      .hero-inner { padding: 24px; }
+      .hero h1 { font-size: 44px; }
+      .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+      .form-row { grid-template-columns: 1fr; }
+      .member-buttons { grid-template-columns: repeat(2, 1fr); }
+      .art-frame { transform: none; }
+      .floating-note { position: static; width: 100%; margin-top: 12px; transform: none; }
+      .hero-photo-stack { height: 315px; }
+      .hero-polaroid.main { inset: 30px 30px 22px 24px; }
+      .memory-section { padding: 18px; }
+      .memory-reel { grid-auto-columns: 82%; }
+      .memory-photo { height: 260px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">🌿 SUMMER CAMP × HANOK NIGHT</div>
+          <h1>ESG Overnight <span>at 다락재</span></h1>
+          <p class="hero-copy">
+            4년째 이어지는 영어 모임의 여름 특별 세션.
+            북한산 아래 한옥에서 먹고, 이야기하고, 서로의 답을 추리하며
+            밤을 보내는 6인 전용 캠프입니다.
+          </p>
+
+          <div class="hero-facts">
+            <div class="fact-chip">📅 2026.07.25–26</div>
+            <div class="fact-chip">📍 서울 북한산 · 다락재</div>
+            <div class="fact-chip">👥 Jennie · Dana · Juram · John · TH · Skyla</div>
+            <div class="fact-chip">🎤 초청강사 TH</div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn-primary" data-go="schedule">일정 보기</button>
+            <button class="btn-secondary" data-go="mission">사전 Mission 작성</button>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-label="ESG 모임 추억 사진 콜라주">
+          <div class="hero-photo-stack">
+            <figure class="hero-polaroid left">
+              <img src="images/memory-13.webp" alt="눈 내린 야외에서 함께 찍은 단체 사진" />
+            </figure>
+            <figure class="hero-polaroid main">
+              <img src="images/memory-01.webp" alt="여름 계곡에서 함께 찍은 단체 사진" />
+            </figure>
+            <figure class="hero-polaroid right">
+              <img src="images/memory-09.webp" alt="숙소에서 함께 시간을 보내는 모습" />
+            </figure>
+          </div>
+          <div class="floating-note">
+            <strong>4 Years Together</strong><br />
+            영어로 시작해 계절마다 쌓아 온 우리의 기록.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="memory-section" aria-labelledby="memory-title">
+      <div class="memory-head">
+        <div>
+          <h2 id="memory-title">Our Four Years</h2>
+          <p>함께 먹고, 공부하고, 놀고, 계절을 건너온 ESG의 기록</p>
+        </div>
+        <span class="eyebrow">사진을 누르면 크게 볼 수 있어요</span>
+      </div>
+      <div class="memory-reel" aria-label="ESG 추억 사진 모음">
+        <button type="button" class="memory-photo" data-full="images/memory-01.webp" data-label="MEMORY 01">
+          <img src="images/memory-01.webp" alt="ESG 모임 추억 사진 1" loading="lazy" />
+        </button>
+        <button type="button" class="memory-photo" data-full="images/memory-02.webp" data-label="MEMORY 02">
+          <img src="images/memory-02.webp" alt="ESG 모임 추억 사진 2" loading="lazy" />
+        </button>
+        <button type="button" class="memory-photo" data-full="images/memory-03.webp" data-label="MEMORY 03">
+          <img src="images/memory-03.webp" alt="ESG 모임 추억 사진 3" loading="lazy" />
+        </button>
+        <button type="button" class="memory-photo" data-full="images/memory-04.webp" data-label="MEMORY 04">
+          <img src="images/memory-04.webp" alt="ESG 모임 추억 사진 4" loading="lazy" />
+        </button>
+        <button type="button" class="memory-photo" data-full="images/memory-05.webp" data-label="MEMORY 05">
+          <img src="images/memory-05.webp" alt="ESG 모임 추억 사진 5" loading="lazy" />
+        </button>
+        <button type="button" class="memory-photo" data-full="images/memory-06.webp" data-label="MEMORY 06">
+          <img src="images/memory-06.webp" alt="ESG 모임 추억 사진 6" loading="lazy" />
+        </button>
+        <button type="button" class="memory-photo" data-full="images/memory-07.webp" data-label="MEMORY 07">
+          <img src="images/memory-07.webp" alt="ESG 모임 추억 사진 7" loading="lazy" />
+        </button>
+        <button type="button" class="memory-photo" data-full="images/memory-08.webp" data-label="MEMORY 08">
+          <img src="images/memory-08.webp" alt="ESG 모임 추억 사진 8" loading="lazy" />
+        </button>
+        <button type="button" class="memory-photo" data-full="images/memory-09.webp" data-label="MEMORY 09">
+          <img src="images/memory-09.webp" alt="ESG 모임 추억 사진 9" loading="lazy" />
+        </button>
+        <button type="button" class="memory-photo" data-full="images/memory-10.webp" data-label="MEMORY 10">
+          <img src="images/memory-10.webp" alt="ESG 모임 추억 사진 10" loading="lazy" />
+        </button>
+        <button type="button" class="memory-photo" data-full="images/memory-11.webp" data-label="MEMORY 11">
+          <img src="images/memory-11.webp" alt="ESG 모임 추억 사진 11" loading="lazy" />
+        </button>
+        <button type="button" class="memory-photo" data-full="images/memory-12.webp" data-label="MEMORY 12">
+          <img src="images/memory-12.webp" alt="ESG 모임 추억 사진 12" loading="lazy" />
+        </button>
+        <button type="button" class="memory-photo" data-full="images/memory-13.webp" data-label="MEMORY 13">
+          <img src="images/memory-13.webp" alt="ESG 모임 추억 사진 13" loading="lazy" />
+        </button>
+      </div>
+    </section>
+
+
+    <nav class="section-nav" aria-label="페이지 메뉴">
+      <button class="tab-button active" data-tab="schedule">캠프 일정</button>
+      <button class="tab-button" data-tab="mission">사전 Mission</button>
+      <button class="tab-button" data-tab="activity">Activity Room</button>
+      <button class="tab-button" data-tab="result">예측 결과</button>
+    </nav>
+
+    <section id="schedule" class="panel active">
+      <div class="section-head">
+        <div>
+          <h2>Camp Schedule</h2>
+          <p>체크인 15:00 기준 일정입니다.</p>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card"><div class="icon">🛒</div><h3>입실 전 장보기</h3><p>저녁, 야식, 술, 음료, 다음 날 아침까지 준비합니다.</p></article>
+        <article class="feature-card"><div class="icon">🏡</div><h3>다락재 한옥 스테이</h3><p>북한산과 한옥의 고즈넉한 여름밤을 즐깁니다.</p></article>
+        <article class="feature-card"><div class="icon">🔥</div><h3>6인 여름 캠프</h3><p>한 공간에서 먹고 이야기하고 게임하는 밤입니다.</p></article>
+      </div>
+
+      <div class="guest-banner">
+        <div class="guest-badge">TH</div>
+        <div>
+          <h3>Special Guest Lecturer · TH</h3>
+          <p>22:30 특별 세션 진행. 주제는 현장 공개입니다.</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item"><div class="time-label">13:30</div><div class="timeline-content"><h3>장보기 집합</h3><p>저녁, 야식, 술, 음료, 아침거리 구매</p></div></div>
+        <div class="timeline-item"><div class="time-label">14:30</div><div class="timeline-content"><h3>다락재 이동</h3><p>장 본 물품과 개인 짐을 챙겨 이동</p></div></div>
+        <div class="timeline-item"><div class="time-label">15:00</div><div class="timeline-content"><h3>체크인 & 캠프 오픈</h3><p>짐 정리, 숙소 확인, 음식과 음료 세팅</p></div></div>
+        <div class="timeline-item"><div class="time-label">15:10</div><div class="timeline-content"><h3>Activity : 마니또 게임 시작</h3><p>배정된 마니또를 하루 동안 최소 1회 진심으로 칭찬하기</p></div></div>
+        <div class="timeline-item"><div class="time-label">18:30</div><div class="timeline-content"><h3>Dinner & Catch-up</h3><p>식사와 근황 공유</p></div></div>
+        <div class="timeline-item"><div class="time-label">20:00</div><div class="timeline-content"><h3>Activity : 영어 공부 현황 고백회</h3><p>실제 공부량, 미룬 계획, 다음 분기 목표 공개</p></div></div>
+        <div class="timeline-item"><div class="time-label">21:00</div><div class="timeline-content"><h3>Activity : Who Wrote This?</h3><p>익명 답변 작성자 맞히기</p></div></div>
+        <div class="timeline-item"><div class="time-label">22:30</div><div class="timeline-content"><h3>TH 특별 세션</h3><p>초청강사 TH의 현장 프로그램</p></div></div>
+        <div class="timeline-item"><div class="time-label">23:00</div><div class="timeline-content"><h3>Activity : 예측·마니또 결과 오픈</h3><p>가장 먼저 잘 것으로 예측된 사람과 마니또 전체 매칭 공개</p></div></div>
+        <div class="timeline-item"><div class="time-label">23:15</div><div class="timeline-content"><h3>Activity : Anonymous Thoughts</h3><p>익명 고민과 최근 생각 공개</p></div></div>
+        <div class="timeline-item"><div class="time-label">00:30</div><div class="timeline-content"><h3>야식 & 자유 토크</h3><p>계획에 없던 이야기 시작</p></div></div>
+      </div>
+    </section>
+
+    <section id="mission" class="panel">
+      <div class="section-head">
+        <div>
+          <h2>Pre-Camp Mission</h2>
+          <p>모든 필수 항목과 이름을 입력한 뒤 한 번만 제출할 수 있습니다.</p>
+          <div class="immutable-notice">⚠️ 제출 후에는 답변 수정·재제출이 불가능합니다. 내용을 반드시 확인한 뒤 제출해 주세요.</div>
+        </div>
+      </div>
+
+      <div id="submissionStatus" class="submission-status"></div>
+
+      <div class="mission-grid">
+        <article class="card">
+          <span class="mission-label">MISSION 01</span>
+          <h3>영어 공부 현황 고백</h3>
+          <p>계획보다 실제로 얼마나 했는지 솔직하게 작성합니다.</p>
+
+          <label style="margin-top:16px;">
+            이름
+            <select id="missionName" required>
+              <option value="">이름 선택</option>
+              <option>Jennie</option><option>Dana</option><option>Juram</option><option>John</option><option>TH</option><option>Skyla</option>
+            </select>
+          </label>
+
+          <div class="form-row" style="margin-top:14px;">
+            <label>
+              현재 공부 빈도
+              <select id="englishFrequency">
+                <option>거의 하지 못하고 있다</option>
+                <option>주 1회 정도</option>
+                <option>주 2~3회</option>
+                <option>주 4회 이상</option>
+                <option>필요할 때만 집중적으로 한다</option>
+              </select>
+            </label>
+            <label>
+              다음 분기 목표
+              <input id="englishGoal" placeholder="예: 주 2회 스피킹 연습" />
+            </label>
+          </div>
+
+          <label style="margin-top:14px;">
+            솔직한 영어 공부 고백
+            <textarea id="englishConfession" placeholder="산 교재, 미룬 계획, 실제 공부량, 최근 영어 사용 경험 등을 작성"></textarea>
+          </label>
+        </article>
+
+        <article class="card">
+          <span class="mission-label">MISSION 02</span>
+          <h3>익명 답변 제출</h3>
+          <p>네 질문에 모두 답하세요. 현장에서 답변만 보고 작성자를 맞힙니다.</p>
+
+          <div class="question-block">
+            <strong>1. 내 인생에 경고문이 붙는다면 어떤 문구일까?</strong>
+            <textarea id="q1" placeholder="익명으로 공개될 답변을 작성"></textarea>
+          </div>
+
+          <div class="question-block">
+            <strong>2. 오늘 안에 100만 원을 가장 쓸데없는 곳에 써야 한다면 무엇을 살까?</strong>
+            <textarea id="q2" placeholder="익명으로 공개될 답변을 작성"></textarea>
+          </div>
+
+          <div class="question-block">
+            <strong>3. 내가 은근히 잘하지만 아무 쓸모도 없는 능력은?</strong>
+            <textarea id="q3" placeholder="익명으로 공개될 답변을 작성"></textarea>
+          </div>
+
+          <div class="question-block">
+            <strong>4. 내일 당장 아주 이상한 사업을 시작해야 한다면 어떤 사업을 열까?</strong>
+            <textarea id="q4" placeholder="익명으로 공개될 답변을 작성"></textarea>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="mission-label">MISSION 03</span>
+          <h3>익명 고민 또는 최근 생각</h3>
+          <label>
+            공개 가능한 고민이나 생각
+            <textarea id="anonymousThought" placeholder="해결책보다 대화를 나누고 싶은 내용을 작성"></textarea>
+          </label>
+          <p>현장에서 공개되어도 괜찮은 수준으로 작성합니다.</p>
+        </article>
+
+        <article class="card">
+          <span class="mission-label">MISSION 04</span>
+          <h3>오늘 밤 예측</h3>
+          <p><strong>가장 일찍 잘 것 같은 사람</strong>에게 투표합니다. 가장 많은 표를 받은 ‘노잼인간’은 벌칙으로 오늘 가장 늦게 자야 합니다.</p>
+          <label style="margin-top:14px;">
+            가장 일찍 잘 것 같은 사람
+            <select id="earlySleeperPrediction">
+              <option>Jennie</option><option>Dana</option><option>Juram</option><option>John</option><option>TH</option><option>Skyla</option>
+            </select>
+          </label>
+        </article>
+
+        <article class="card">
+          <span class="mission-label">MISSION 05</span>
+          <h3>마니또 게임</h3>
+          <p>모든 답변을 제출하면 본인을 제외한 멤버 한 명이 자동으로 배정됩니다. <strong>하루 동안 마니또를 최소 1회 진심으로 칭찬해 주세요.</strong></p>
+          <div id="manittoResult" class="manitto-box" style="display:none;"></div>
+        </article>
+      </div>
+
+      <div class="save-bar">
+        <button id="saveMission" class="btn-primary">모든 답변 제출하기</button>
+        <div id="saveStatus" style="margin-top:10px;color:var(--muted);"></div>
+        <div id="syncStatus" style="margin-top:8px;font-size:13px;color:var(--muted);">실시간 연결 준비 중...</div>
+      </div>
+    </section>
+
+    <section id="activity" class="panel">
+      <div class="section-head">
+        <div>
+          <h2>Activity Room</h2>
+          <p>Firebase 연결 시 6명의 휴대폰에서 제출 내용과 진행자의 다음·공개 조작이 동시에 반영됩니다.</p>
+        </div>
+      </div>
+
+      <div id="activityWaiting" class="locked-box">
+        <h3>아직 준비 중입니다.</h3>
+        <p>사전 Mission이 제출되면 이 화면에 게임 콘텐츠가 자동으로 채워집니다.</p>
+      </div>
+
+      <div id="activityContent" style="display:none;">
+        <div class="activity-grid">
+          <article class="activity-card">
+            <div>
+              <div class="activity-number">01</div>
+              <h3>English Study Confession</h3>
+              <div id="confessionDisplay" class="answer-box"></div>
+            </div>
+            <div>
+              <button id="revealConfession" class="btn-primary" style="width:100%;">고백한 사람 공개</button>
+              <button id="nextConfession" class="btn-secondary" style="width:100%;margin-top:8px;">다음 고백</button>
+              <div id="confessionOwner" style="margin-top:10px;font-weight:800;"></div>
+            </div>
+          </article>
+
+          <article class="activity-card">
+            <div>
+              <div class="activity-number">02</div>
+              <h3>Who Wrote This?</h3>
+              <div id="answerQuestionDisplay" style="color:var(--muted);margin-bottom:10px;"></div>
+              <div id="answerDisplay" class="answer-box"></div>
+            </div>
+            <div>
+              <div id="answerMemberButtons" class="member-buttons"></div>
+              <div style="display:flex;gap:8px;margin-top:12px;">
+                <button id="checkAnswer" class="btn-primary" style="flex:1;">내 답 확인</button>
+                <button id="revealAnswer" class="btn-secondary" style="flex:1;">전체 공개</button>
+              </div>
+              <button id="nextAnswer" class="btn-secondary" style="width:100%;margin-top:8px;">다음 답변</button>
+              <div id="answerFeedback" style="margin-top:10px;font-weight:800;"></div>
+            </div>
+          </article>
+
+          <article class="activity-card">
+            <div>
+              <div class="activity-number">03</div>
+              <h3>Anonymous Thoughts</h3>
+              <div id="thoughtDisplay" class="answer-box"></div>
+            </div>
+            <div>
+              <button id="revealThought" class="btn-primary" style="width:100%;">작성자 공개</button>
+              <button id="nextThought" class="btn-secondary" style="width:100%;margin-top:8px;">다음 고민</button>
+              <div id="thoughtOwner" style="margin-top:10px;font-weight:800;"></div>
+            </div>
+          </article>
+
+          <article class="activity-card">
+            <div>
+              <div class="activity-number">04</div>
+              <h3>Manitto Status</h3>
+              <div id="manittoBoard" class="answer-box"></div>
+            </div>
+            <p>마니또의 정체는 공개하지 않습니다. 각자 하루 동안 최소 한 번 칭찬을 완료하세요.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="result" class="panel">
+      <div class="section-head">
+        <div>
+          <h2>Final Reveal</h2>
+          <p>2026년 7월 25일 밤 11시부터 예측 결과와 마니또 전체 매칭을 확인할 수 있습니다.</p>
+        </div>
+      </div>
+
+      <div id="resultLocked" class="locked-box">
+        <h3>결과는 밤 11시에 공개됩니다.</h3>
+        <p id="countdownText">오픈 시간까지 계산 중입니다.</p>
+      </div>
+
+      <div id="resultContent" style="display:none;">
+        <div class="card">
+          <p style="margin-bottom:16px;">아래 버튼을 누르면 ‘가장 일찍 잘 것 같은 사람’ 투표 결과와 마니또 전체 매칭이 함께 공개됩니다.</p>
+          <button id="calculateResults" class="btn-primary" style="width:100%;">예측·마니또 결과 공개하기</button>
+        </div>
+        <div id="resultBoard" class="result-grid" style="margin-top:18px;"></div>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      <strong>ESG Overnight at 다락재</strong>
+      <p>4 Years · 6 People · One Summer Night</p>
+    </div>
+  </main>
+
+  <div id="photoLightbox" class="photo-lightbox" role="dialog" aria-modal="true" aria-label="확대 사진">
+    <button id="lightboxClose" type="button" class="lightbox-close" aria-label="사진 닫기">×</button>
+    <img id="lightboxImage" src="" alt="확대된 ESG 추억 사진" />
+  </div>
+
+
+  <script type="module">
+    import { firebaseConfig, ROOM_ID } from "./firebase-config.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+    import {
+      getFirestore,
+      collection,
+      doc,
+      setDoc,
+      getDoc,
+      onSnapshot,
+      runTransaction,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+
+    const photoLightbox = document.getElementById("photoLightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+
+    document.querySelectorAll(".memory-photo").forEach(button => {
+      button.addEventListener("click", () => {
+        lightboxImage.src = button.dataset.full;
+        photoLightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    function closeLightbox() {
+      photoLightbox.classList.remove("open");
+      lightboxImage.src = "";
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
+    photoLightbox.addEventListener("click", event => {
+      if (event.target === photoLightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && photoLightbox.classList.contains("open")) {
+        closeLightbox();
+      }
+    });
+
+    const members = ["Jennie", "Dana", "Juram", "John", "TH", "Skyla"];
+    const LOCAL_SUBMISSIONS_KEY = "esg_darakjae_submissions_v5";
+    const LOCAL_MANITTO_KEY = "esg_darakjae_manitto_v5";
+    const LOCAL_STATE_KEY = "esg_darakjae_activity_state_v5";
+    const LAST_MEMBER_KEY = "esg_darakjae_last_member_v5";
+
+    let submissions = [];
+    let answerDeck = [];
+    let selectedGuess = "";
+    let liveMode = false;
+    let db = null;
+    let roomRef = null;
+    let submissionsRef = null;
+    let activityStateRef = null;
+    let unsubscribeSubmissions = null;
+    let unsubscribeState = null;
+    let activityState = {
+      answerIndex: 0,
+      answerRevealed: false,
+      thoughtIndex: 0,
+      thoughtRevealed: false,
+      confessionIndex: 0,
+      confessionRevealed: false
+    };
+
+    const localChannel = "BroadcastChannel" in window
+      ? new BroadcastChannel("esg-darakjae-live-v5")
+      : null;
+
+    const syncStatus = document.getElementById("syncStatus");
+
+    function isFirebaseConfigured() {
+      return Boolean(
+        firebaseConfig &&
+        firebaseConfig.apiKey &&
+        !String(firebaseConfig.apiKey).startsWith("YOUR_") &&
+        firebaseConfig.projectId
+      );
+    }
+
+    function setSyncStatus(message, ok = false) {
+      syncStatus.textContent = message;
+      syncStatus.style.color = ok ? "var(--forest)" : "var(--muted)";
+    }
+
+    function openTab(tabId) {
+      document.querySelectorAll(".tab-button").forEach(button => {
+        button.classList.toggle("active", button.dataset.tab === tabId);
+      });
+      document.querySelectorAll(".panel").forEach(panel => {
+        panel.classList.toggle("active", panel.id === tabId);
+      });
+      window.scrollTo({
+        top: document.querySelector(".section-nav").offsetTop - 10,
+        behavior: "smooth"
+      });
+    }
+
+    document.querySelectorAll(".tab-button").forEach(button => {
+      button.addEventListener("click", () => openTab(button.dataset.tab));
+    });
+
+    document.querySelectorAll("[data-go]").forEach(button => {
+      button.addEventListener("click", () => openTab(button.dataset.go));
+    });
+
+    function loadLocalSubmissions() {
+      try {
+        return JSON.parse(localStorage.getItem(LOCAL_SUBMISSIONS_KEY)) || [];
+      } catch {
+        return [];
+      }
+    }
+
+    function loadLocalState() {
+      try {
+        return {
+          ...activityState,
+          ...(JSON.parse(localStorage.getItem(LOCAL_STATE_KEY)) || {})
+        };
+      } catch {
+        return { ...activityState };
+      }
+    }
+
+    function generateDerangement(names) {
+      const shuffled = [...names];
+      for (let attempt = 0; attempt < 200; attempt += 1) {
+        for (let index = shuffled.length - 1; index > 0; index -= 1) {
+          const randomIndex = Math.floor(Math.random() * (index + 1));
+          [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+        }
+        if (names.every((name, index) => name !== shuffled[index])) {
+          return Object.fromEntries(names.map((name, index) => [name, shuffled[index]]));
+        }
+      }
+      return Object.fromEntries(names.map((name, index) => [name, names[(index + 1) % names.length]]));
+    }
+
+    async function initializeDataLayer() {
+      if (!isFirebaseConfigured()) {
+        initializeLocalMode("Firebase 설정 전: 이 기기 안에서만 작동하는 데모 모드입니다.");
+        return;
+      }
+
+      try {
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        await signInAnonymously(auth);
+
+        db = getFirestore(app);
+        roomRef = doc(db, "rooms", ROOM_ID);
+        submissionsRef = collection(db, "rooms", ROOM_ID, "submissions");
+        activityStateRef = doc(db, "rooms", ROOM_ID, "state", "activity");
+        liveMode = true;
+        setSyncStatus("실시간 연결 완료 · 여러 휴대폰에서 동시에 반영됩니다.", true);
+
+        unsubscribeSubmissions = onSnapshot(
+          submissionsRef,
+          snapshot => {
+            submissions = snapshot.docs.map(item => item.data());
+            submissions.sort((a, b) => members.indexOf(a.name) - members.indexOf(b.name));
+            refreshAll();
+          },
+          error => {
+            console.error(error);
+            setSyncStatus("실시간 제출 데이터 연결 실패: Firebase 설정과 Rules를 확인하세요.");
+          }
+        );
+
+        unsubscribeState = onSnapshot(
+          activityStateRef,
+          snapshot => {
+            activityState = snapshot.exists()
+              ? { ...activityState, ...snapshot.data() }
+              : { ...activityState };
+            renderActivities();
+          },
+          error => {
+            console.error(error);
+            setSyncStatus("게임 진행 상태 연결 실패: Firestore Rules를 확인하세요.");
+          }
+        );
+
+        await restoreLastMemberManitto();
+      } catch (error) {
+        console.error(error);
+        initializeLocalMode("Firebase 연결 실패: 로컬 데모 모드로 전환했습니다.");
+      }
+    }
+
+    function initializeLocalMode(message) {
+      liveMode = false;
+      submissions = loadLocalSubmissions();
+      activityState = loadLocalState();
+      setSyncStatus(message);
+      refreshAll();
+      restoreLastMemberManitto();
+    }
+
+    async function ensureManittoMap() {
+      if (liveMode) {
+        return runTransaction(db, async transaction => {
+          const roomSnapshot = await transaction.get(roomRef);
+          if (roomSnapshot.exists() && roomSnapshot.data().manittoMap) {
+            return roomSnapshot.data().manittoMap;
+          }
+
+          const manittoMap = generateDerangement(members);
+          transaction.set(roomRef, {
+            roomName: "ESG Overnight at 다락재",
+            manittoMap,
+            createdAt: serverTimestamp()
+          });
+          return manittoMap;
+        });
+      }
+
+      let map = {};
+      try {
+        map = JSON.parse(localStorage.getItem(LOCAL_MANITTO_KEY)) || {};
+      } catch {
+        map = {};
+      }
+      if (Object.keys(map).length !== members.length) {
+        map = generateDerangement(members);
+        localStorage.setItem(LOCAL_MANITTO_KEY, JSON.stringify(map));
+      }
+      return map;
+    }
+
+    async function getManittoMap() {
+      if (liveMode) {
+        const snapshot = await getDoc(roomRef);
+        return snapshot.exists() ? (snapshot.data().manittoMap || {}) : {};
+      }
+      try {
+        return JSON.parse(localStorage.getItem(LOCAL_MANITTO_KEY)) || {};
+      } catch {
+        return {};
+      }
+    }
+
+    function validateMission() {
+      const requiredIds = [
+        "missionName",
+        "englishGoal",
+        "englishConfession",
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "anonymousThought"
+      ];
+      return requiredIds.every(id => document.getElementById(id).value.trim() !== "");
+    }
+
+    function buildSubmission() {
+      return {
+        name: document.getElementById("missionName").value,
+        frequency: document.getElementById("englishFrequency").value,
+        goal: document.getElementById("englishGoal").value.trim(),
+        confession: document.getElementById("englishConfession").value.trim(),
+        answers: [
+          {
+            question: "내 인생에 경고문이 붙는다면 어떤 문구일까?",
+            answer: document.getElementById("q1").value.trim()
+          },
+          {
+            question: "오늘 안에 100만 원을 가장 쓸데없는 곳에 써야 한다면 무엇을 살까?",
+            answer: document.getElementById("q2").value.trim()
+          },
+          {
+            question: "내가 은근히 잘하지만 아무 쓸모도 없는 능력은?",
+            answer: document.getElementById("q3").value.trim()
+          },
+          {
+            question: "내일 당장 아주 이상한 사업을 시작해야 한다면 어떤 사업을 열까?",
+            answer: document.getElementById("q4").value.trim()
+          }
+        ],
+        anonymousThought: document.getElementById("anonymousThought").value.trim(),
+        earlySleeperPrediction: document.getElementById("earlySleeperPrediction").value
+      };
+    }
+
+    document.getElementById("saveMission").addEventListener("click", async () => {
+      const status = document.getElementById("saveStatus");
+      if (!validateMission()) {
+        status.textContent = "이름과 모든 필수 답변을 빠짐없이 입력해 주세요.";
+        return;
+      }
+
+      const submission = buildSubmission();
+      const alreadySubmitted = submissions.some(item => item.name === submission.name);
+      if (alreadySubmitted) {
+        status.textContent = `${submission.name}은(는) 이미 제출을 완료했습니다. 제출 후 수정·재제출은 불가능합니다.`;
+        lockMissionForm(submission.name);
+        return;
+      }
+
+      const confirmed = window.confirm(
+        `${submission.name} 이름으로 제출합니다.
+제출 이후에는 수정하거나 다시 제출할 수 없습니다.
+계속할까요?`
+      );
+      if (!confirmed) return;
+
+      const button = document.getElementById("saveMission");
+      button.disabled = true;
+      status.textContent = "제출 중입니다...";
+
+      try {
+        const manittoMap = await ensureManittoMap();
+
+        if (liveMode) {
+          const memberRef = doc(submissionsRef, submission.name);
+          const existingSnapshot = await getDoc(memberRef);
+          if (existingSnapshot.exists()) {
+            throw new Error("ALREADY_SUBMITTED");
+          }
+          await setDoc(memberRef, {
+            ...submission,
+            submittedAt: serverTimestamp()
+          });
+        } else {
+          if (submissions.some(item => item.name === submission.name)) {
+            throw new Error("ALREADY_SUBMITTED");
+          }
+          submissions.push(submission);
+          localStorage.setItem(LOCAL_SUBMISSIONS_KEY, JSON.stringify(submissions));
+          localChannel?.postMessage({ type: "submissions-updated" });
+          refreshAll();
+        }
+
+        localStorage.setItem(LAST_MEMBER_KEY, submission.name);
+        status.textContent = `${submission.name}의 사전 Mission이 제출되었습니다. 제출 내용은 수정할 수 없습니다.`;
+        showManitto(submission.name, manittoMap);
+        lockMissionForm(submission.name, true);
+      } catch (error) {
+        console.error(error);
+        status.textContent = error?.message === "ALREADY_SUBMITTED"
+          ? `${submission.name}은(는) 이미 제출을 완료했습니다. 수정·재제출은 불가능합니다.`
+          : "제출에 실패했습니다. Firebase 연결과 보안 규칙을 확인하세요.";
+      } finally {
+        button.disabled = submissions.some(item => item.name === submission.name);
+      }
+    });
+
+    function setMissionControlsDisabled(disabled, freezeName = false) {
+      document.querySelectorAll(
+        "#mission input, #mission textarea, #mission select:not(#missionName)"
+      ).forEach(element => {
+        element.disabled = disabled;
+      });
+      document.getElementById("missionName").disabled = freezeName;
+      document.getElementById("saveMission").disabled = disabled;
+      document.querySelector(".mission-grid")?.classList.toggle("form-locked", disabled);
+    }
+
+    function lockMissionForm(name, freezeName = false) {
+      setMissionControlsDisabled(true, freezeName);
+      document.getElementById("saveStatus").textContent =
+        `${name}은(는) 제출 완료 상태입니다. 제출 후 수정·재제출은 불가능합니다.`;
+    }
+
+    function unlockMissionForm() {
+      setMissionControlsDisabled(false, false);
+    }
+
+    function clearMissionInputs() {
+      document.querySelectorAll("#mission input, #mission textarea").forEach(element => {
+        element.value = "";
+      });
+      document.getElementById("englishFrequency").selectedIndex = 0;
+      document.getElementById("earlySleeperPrediction").selectedIndex = 0;
+      document.getElementById("manittoResult").style.display = "none";
+    }
+
+    function showManitto(name, map) {
+      const result = document.getElementById("manittoResult");
+      if (!name || !map[name]) {
+        result.style.display = "none";
+        return;
+      }
+      result.style.display = "block";
+      result.innerHTML = `당신의 마니또는 <strong>'${map[name]}'</strong> 입니다.<br><span style="font-size:14px;">오늘 하루 최소 1회 진심으로 칭찬해 주세요.</span>`;
+    }
+
+    async function restoreLastMemberManitto() {
+      const lastMember = localStorage.getItem(LAST_MEMBER_KEY);
+      if (!lastMember) return;
+      document.getElementById("missionName").value = lastMember;
+      const map = await getManittoMap();
+      showManitto(lastMember, map);
+      if (submissions.some(item => item.name === lastMember)) {
+        lockMissionForm(lastMember, true);
+      }
+    }
+
+    document.getElementById("missionName").addEventListener("change", async event => {
+      const name = event.target.value;
+      document.getElementById("saveStatus").textContent = "";
+      document.getElementById("manittoResult").style.display = "none";
+
+      if (!name) {
+        unlockMissionForm();
+        return;
+      }
+
+      const existing = submissions.find(item => item.name === name);
+      if (existing) {
+        const lastMember = localStorage.getItem(LAST_MEMBER_KEY);
+        if (lastMember === name) {
+          const map = await getManittoMap();
+          showManitto(name, map);
+        }
+        lockMissionForm(name, lastMember === name);
+        return;
+      }
+
+      unlockMissionForm();
+      document.getElementById("missionName").value = name;
+    });
+    function renderSubmissionStatus() {
+      const container = document.getElementById("submissionStatus");
+      container.innerHTML = "";
+      members.forEach(member => {
+        const chip = document.createElement("div");
+        const done = submissions.some(item => item.name === member);
+        chip.className = "status-chip" + (done ? " done" : "");
+        chip.textContent = done ? `${member} 제출 완료` : `${member} 대기 중`;
+        container.appendChild(chip);
+      });
+    }
+
+    function buildAnswerDeck() {
+      answerDeck = submissions.flatMap(item =>
+        (item.answers || []).map(answer => ({
+          name: item.name,
+          question: answer.question,
+          answer: answer.answer
+        }))
+      );
+      if (activityState.answerIndex >= answerDeck.length) {
+        activityState.answerIndex = 0;
+      }
+    }
+
+    function renderActivityAvailability() {
+      const hasData = submissions.length > 0;
+      document.getElementById("activityWaiting").style.display = hasData ? "none" : "block";
+      document.getElementById("activityContent").style.display = hasData ? "block" : "none";
+    }
+
+    function renderActivities() {
+      renderActivityAvailability();
+      if (!submissions.length) return;
+
+      buildAnswerDeck();
+      renderConfession();
+      renderAnswer();
+      renderThought();
+      renderManittoBoard();
+    }
+
+    function renderConfession() {
+      const item = submissions[activityState.confessionIndex % submissions.length];
+      document.getElementById("confessionDisplay").innerHTML = `
+        <div>
+          <strong>${escapeHtml(item.confession)}</strong><br><br>
+          <span style="font-size:14px;color:var(--muted);">
+            현재 빈도: ${escapeHtml(item.frequency)}<br>
+            다음 목표: ${escapeHtml(item.goal)}
+          </span>
+        </div>
+      `;
+      document.getElementById("confessionOwner").textContent = activityState.confessionRevealed
+        ? `고백한 사람은 ${item.name}입니다.`
+        : "";
+    }
+
+    function renderAnswer() {
+      if (!answerDeck.length) return;
+      const item = answerDeck[activityState.answerIndex % answerDeck.length];
+      document.getElementById("answerQuestionDisplay").textContent = item.question;
+      document.getElementById("answerDisplay").textContent = item.answer;
+      document.getElementById("answerFeedback").textContent = activityState.answerRevealed
+        ? `작성자는 ${item.name}입니다.`
+        : "";
+      if (activityState.answerRevealed) {
+        selectedGuess = "";
+        answerMemberButtons.querySelectorAll("button").forEach(button => button.classList.remove("selected"));
+      }
+    }
+
+    function renderThought() {
+      const item = submissions[activityState.thoughtIndex % submissions.length];
+      document.getElementById("thoughtDisplay").textContent = item.anonymousThought;
+      document.getElementById("thoughtOwner").textContent = activityState.thoughtRevealed
+        ? `작성자는 ${item.name}입니다.`
+        : "";
+    }
+
+    function renderManittoBoard() {
+      const names = submissions.map(item => item.name);
+      document.getElementById("manittoBoard").innerHTML = names.length
+        ? `<div>${names.map(name => `<div style="margin:6px 0;"><strong>${name}</strong> · 마니또 배정 완료</div>`).join("")}</div>`
+        : "아직 배정된 멤버가 없습니다.";
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    const answerMemberButtons = document.getElementById("answerMemberButtons");
+    members.forEach(member => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = member;
+      button.addEventListener("click", () => {
+        selectedGuess = member;
+        answerMemberButtons.querySelectorAll("button").forEach(item => item.classList.remove("selected"));
+        button.classList.add("selected");
+      });
+      answerMemberButtons.appendChild(button);
+    });
+
+    async function updateActivityState(patch) {
+      activityState = { ...activityState, ...patch };
+      if (liveMode) {
+        await setDoc(activityStateRef, activityState, { merge: true });
+      } else {
+        localStorage.setItem(LOCAL_STATE_KEY, JSON.stringify(activityState));
+        localChannel?.postMessage({ type: "state-updated" });
+        renderActivities();
+      }
+    }
+
+    document.getElementById("checkAnswer").addEventListener("click", () => {
+      if (!answerDeck.length) return;
+      const item = answerDeck[activityState.answerIndex % answerDeck.length];
+      const feedback = document.getElementById("answerFeedback");
+      if (!selectedGuess) {
+        feedback.textContent = "먼저 작성자를 선택해 주세요.";
+        return;
+      }
+      feedback.textContent = selectedGuess === item.name
+        ? "정답입니다."
+        : "오답입니다. 전체 공개 버튼으로 정답을 확인하세요.";
+    });
+
+    document.getElementById("revealAnswer").addEventListener("click", async () => {
+      await updateActivityState({ answerRevealed: true });
+    });
+
+    document.getElementById("nextAnswer").addEventListener("click", async () => {
+      if (!answerDeck.length) return;
+      await updateActivityState({
+        answerIndex: (activityState.answerIndex + 1) % answerDeck.length,
+        answerRevealed: false
+      });
+    });
+
+    document.getElementById("revealThought").addEventListener("click", async () => {
+      await updateActivityState({ thoughtRevealed: true });
+    });
+
+    document.getElementById("nextThought").addEventListener("click", async () => {
+      if (!submissions.length) return;
+      await updateActivityState({
+        thoughtIndex: (activityState.thoughtIndex + 1) % submissions.length,
+        thoughtRevealed: false
+      });
+    });
+
+    document.getElementById("revealConfession").addEventListener("click", async () => {
+      await updateActivityState({ confessionRevealed: true });
+    });
+
+    document.getElementById("nextConfession").addEventListener("click", async () => {
+      if (!submissions.length) return;
+      await updateActivityState({
+        confessionIndex: (activityState.confessionIndex + 1) % submissions.length,
+        confessionRevealed: false
+      });
+    });
+
+    function refreshAll() {
+      renderSubmissionStatus();
+      renderActivities();
+      const selectedName = document.getElementById("missionName").value;
+      if (selectedName && submissions.some(item => item.name === selectedName)) {
+        const lastMember = localStorage.getItem(LAST_MEMBER_KEY);
+        lockMissionForm(selectedName, lastMember === selectedName);
+      }
+    }
+
+    window.addEventListener("storage", event => {
+      if (liveMode) return;
+      if (event.key === LOCAL_SUBMISSIONS_KEY) submissions = loadLocalSubmissions();
+      if (event.key === LOCAL_STATE_KEY) activityState = loadLocalState();
+      refreshAll();
+    });
+
+    localChannel?.addEventListener("message", () => {
+      if (liveMode) return;
+      submissions = loadLocalSubmissions();
+      activityState = loadLocalState();
+      refreshAll();
+    });
+
+    const unlockTime = new Date("2026-07-25T23:00:00+09:00").getTime();
+
+    function updateUnlockState() {
+      const now = Date.now();
+      const locked = now < unlockTime;
+      document.getElementById("resultLocked").style.display = locked ? "block" : "none";
+      document.getElementById("resultContent").style.display = locked ? "none" : "block";
+
+      if (locked) {
+        const diff = unlockTime - now;
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        document.getElementById("countdownText").textContent =
+          `2026년 7월 25일 밤 11시 오픈 · 남은 시간 ${days}일 ${hours}시간 ${minutes}분`;
+      }
+    }
+
+    document.getElementById("calculateResults").addEventListener("click", async () => {
+      const resultBoard = document.getElementById("resultBoard");
+      resultBoard.innerHTML = "";
+
+      if (!submissions.length) {
+        resultBoard.innerHTML = '<div class="result-card">제출된 예측이 없습니다.</div>';
+        return;
+      }
+
+      const counts = Object.fromEntries(members.map(member => [member, 0]));
+      submissions.forEach(item => {
+        if (counts[item.earlySleeperPrediction] !== undefined) {
+          counts[item.earlySleeperPrediction] += 1;
+        }
+      });
+
+      const ranked = Object.entries(counts)
+        .map(([name, votes]) => ({ name, votes }))
+        .sort((a, b) => b.votes - a.votes || members.indexOf(a.name) - members.indexOf(b.name));
+
+      const maxVotes = ranked[0]?.votes ?? 0;
+      const earliestSleepers = ranked.filter(item => item.votes === maxVotes && maxVotes > 0);
+
+      const predictionSummary = document.createElement("div");
+      predictionSummary.className = "locked-box";
+      predictionSummary.style.gridColumn = "1 / -1";
+      predictionSummary.innerHTML = earliestSleepers.length
+        ? `<h3>가장 먼저 잘 것으로 예측된 사람: ${earliestSleepers.map(item => escapeHtml(item.name)).join(", ")}</h3>
+           <p>최다 득표 ‘노잼인간’이므로 오늘은 벌칙으로 가장 늦게 자야 합니다.</p>`
+        : "<h3>집계할 표가 없습니다.</h3>";
+      resultBoard.appendChild(predictionSummary);
+
+      const voteTitle = document.createElement("div");
+      voteTitle.className = "result-section-title";
+      voteTitle.textContent = "가장 일찍 잘 사람 투표 결과";
+      resultBoard.appendChild(voteTitle);
+
+      ranked.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.className = "result-card";
+        card.innerHTML = `
+          <div class="result-rank">${index + 1}</div>
+          <h3>${escapeHtml(item.name)}</h3>
+          <p>${item.votes}표</p>
+          <strong>${item.votes === maxVotes && maxVotes > 0 ? "최다 득표" : ""}</strong>
+        `;
+        resultBoard.appendChild(card);
+      });
+
+      const manittoTitle = document.createElement("div");
+      manittoTitle.className = "result-section-title";
+      manittoTitle.textContent = "마니또 전체 매칭";
+      resultBoard.appendChild(manittoTitle);
+
+      const manittoMap = await getManittoMap();
+      if (!Object.keys(manittoMap).length) {
+        const empty = document.createElement("div");
+        empty.className = "result-card";
+        empty.style.gridColumn = "1 / -1";
+        empty.textContent = "마니또 배정 정보가 없습니다.";
+        resultBoard.appendChild(empty);
+        return;
+      }
+
+      members.forEach(giver => {
+        const card = document.createElement("div");
+        card.className = "result-card";
+        card.innerHTML = `
+          <h3>${escapeHtml(giver)}</h3>
+          <div class="matching-arrow">↓</div>
+          <p style="font-size:18px;font-weight:900;color:var(--forest-dark);">
+            ${escapeHtml(manittoMap[giver] || "미배정")}
+          </p>
+          <small>최소 1회 칭찬 미션</small>
+        `;
+        resultBoard.appendChild(card);
+      });
+    });
+
+    window.addEventListener("beforeunload", () => {
+      unsubscribeSubmissions?.();
+      unsubscribeState?.();
+      localChannel?.close();
+    });
+
+    renderSubmissionStatus();
+    renderActivityAvailability();
+    updateUnlockState();
+    setInterval(updateUnlockState, 30000);
+    initializeDataLayer();
+  </script>
+</body>
+</html>
