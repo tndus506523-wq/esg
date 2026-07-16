@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /rooms/darakjae-2026 {
+      // 마니또 배정표는 최초 1회만 생성하며, 결과 공개 때 읽습니다.
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+                    && request.resource.data.keys().hasOnly([
+                      'roomName', 'manittoMap', 'createdAt'
+                    ]);
+      allow update, delete: if false;
+
+      match /submissions/{member} {
+        // 이름별 최초 제출만 허용합니다. 수정·재제출·삭제는 차단합니다.
+        allow read: if request.auth != null;
+        allow create: if request.auth != null
+          && member in ['Jennie', 'Dana', 'Juram', 'John', 'TH', 'Skyla']
+          && request.resource.data.name == member;
+        allow update, delete: if false;
+      }
+
+      match /state/activity {
+        // 진행자의 다음/공개 상태를 모든 휴대폰에 동기화합니다.
+        allow read, create, update: if request.auth != null;
+        allow delete: if false;
+      }
+    }
+  }
+}
