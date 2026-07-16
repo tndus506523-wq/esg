@@ -1158,22 +1158,22 @@
           <p>네 질문에 모두 답하세요. 현장에서 답변만 보고 작성자를 맞힙니다.</p>
 
           <div class="question-block">
-            <strong>1. 내 인생에 경고문이 붙는다면 어떤 문구일까?</strong>
+            <strong>1. 갑자기 내 통장에 출처를 알 수 없는 1억 원이 들어왔다. 가장 먼저 할 행동은?</strong>
             <textarea id="q1" placeholder="익명으로 공개될 답변을 작성"></textarea>
           </div>
 
           <div class="question-block">
-            <strong>2. 오늘 안에 100만 원을 가장 쓸데없는 곳에 써야 한다면 무엇을 살까?</strong>
+            <strong>2. 내가 유튜브 채널을 반드시 하나 시작해야 한다면, 채널명과 콘텐츠는?</strong>
             <textarea id="q2" placeholder="익명으로 공개될 답변을 작성"></textarea>
           </div>
 
           <div class="question-block">
-            <strong>3. 내가 은근히 잘하지만 아무 쓸모도 없는 능력은?</strong>
+            <strong>3. 여섯 명이 좀비 사태에 휘말렸을 때, 내가 맡을 것 같은 역할과 첫 번째 행동은?</strong>
             <textarea id="q3" placeholder="익명으로 공개될 답변을 작성"></textarea>
           </div>
 
           <div class="question-block">
-            <strong>4. 내일 당장 아주 이상한 사업을 시작해야 한다면 어떤 사업을 열까?</strong>
+            <strong>4. 내 인생을 소재로 한 영화가 제작된다면, 제목은 무엇이고 장르는 무엇인가?</strong>
             <textarea id="q4" placeholder="익명으로 공개될 답변을 작성"></textarea>
           </div>
         </article>
@@ -1379,10 +1379,10 @@
     });
 
     const members = ["Jennie", "Dana", "Juram", "John", "TH", "Skyla"];
-    const LOCAL_SUBMISSIONS_KEY = "esg_darakjae_submissions_v7";
-    const LOCAL_MANITTO_KEY = "esg_darakjae_manitto_v7";
-    const LOCAL_STATE_KEY = "esg_darakjae_activity_state_v7";
-    const LAST_MEMBER_KEY = "esg_darakjae_last_member_v7";
+    const LOCAL_SUBMISSIONS_KEY = "esg_darakjae_submissions_v8";
+    const LOCAL_MANITTO_KEY = "esg_darakjae_manitto_v8";
+    const LOCAL_STATE_KEY = "esg_darakjae_activity_state_v8";
+    const LAST_MEMBER_KEY = "esg_darakjae_last_member_v8";
 
     let submissions = [];
     let answerDeck = [];
@@ -1404,7 +1404,7 @@
     };
 
     const localChannel = "BroadcastChannel" in window
-      ? new BroadcastChannel("esg-darakjae-live-v7")
+      ? new BroadcastChannel("esg-darakjae-live-v8")
       : null;
 
     const syncStatus = document.getElementById("syncStatus");
@@ -1603,19 +1603,19 @@
         confession: document.getElementById("englishConfession").value.trim(),
         answers: [
           {
-            question: "내 인생에 경고문이 붙는다면 어떤 문구일까?",
+            question: "갑자기 내 통장에 출처를 알 수 없는 1억 원이 들어왔다. 가장 먼저 할 행동은?",
             answer: document.getElementById("q1").value.trim()
           },
           {
-            question: "오늘 안에 100만 원을 가장 쓸데없는 곳에 써야 한다면 무엇을 살까?",
+            question: "내가 유튜브 채널을 반드시 하나 시작해야 한다면, 채널명과 콘텐츠는?",
             answer: document.getElementById("q2").value.trim()
           },
           {
-            question: "내가 은근히 잘하지만 아무 쓸모도 없는 능력은?",
+            question: "여섯 명이 좀비 사태에 휘말렸을 때, 내가 맡을 것 같은 역할과 첫 번째 행동은?",
             answer: document.getElementById("q3").value.trim()
           },
           {
-            question: "내일 당장 아주 이상한 사업을 시작해야 한다면 어떤 사업을 열까?",
+            question: "내 인생을 소재로 한 영화가 제작된다면, 제목은 무엇이고 장르는 무엇인가?",
             answer: document.getElementById("q4").value.trim()
           }
         ],
